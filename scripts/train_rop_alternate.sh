@@ -3,7 +3,7 @@ export PYTHONUNBUFFERED=1
 export MXNET_ENABLE_GPU_P2P=0
 export PYTHONPATH=${PYTHONPATH}:incubator-mxnet/python/
 
-TRAIN_DIR=/home/qilei123/data0/RetinaImg/ROP_COCO/
+TRAIN_DIR=/home/qileimail123/data0/RetinaImg/ROP_COCO/
 DATASET=Retina
 SET=train2014
 TEST_SET=val2014

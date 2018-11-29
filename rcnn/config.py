@@ -152,18 +152,18 @@ network.resnet_fpn.FIXED_PARAMS_SHARED = ['conv0', 'stage1', 'stage2', 'stage3',
 # dataset settings
 dataset = edict()
 
-dataset.ROPRetina = edict()
-dataset.ROPRetina.image_set = 'train2014'
-dataset.ROPRetina.test_image_set = 'val2014'
-dataset.ROPRetina.root_path = '/home/qileimail123/data0/RetinaImg'
-dataset.ROPRetina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
-dataset.ROPRetina.NUM_CLASSES = 12
-dataset.ROPRetina.SCALES = [(1024, 2048)]
-dataset.ROPRetina.ANCHOR_SCALES = (8,)
-dataset.ROPRetina.ANCHOR_RATIOS = (0.5, 1, 2)
-dataset.ROPRetina.NUM_ANCHORS = len(dataset.ROPRetina.ANCHOR_SCALES) * len(dataset.ROPRetina.ANCHOR_RATIOS)
-dataset.ROPRetina.CLASS_ID = [0, 1, 2, 3, 4, 5, 6, 7, 8,9,10,11]
-dataset.ROPRetina.CLASSES = ['Background','Macula','OpticDisk','Laser Photocoagulation Spot-6108', \
+dataset.Retina = edict()
+dataset.Retina.image_set = 'train2014'
+dataset.Retina.test_image_set = 'val2014'
+dataset.Retina.root_path = '/home/qileimail123/data0/RetinaImg'
+dataset.Retina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
+dataset.Retina.NUM_CLASSES = 12
+dataset.Retina.SCALES = [(1024, 2048)]
+dataset.Retina.ANCHOR_SCALES = (8,)
+dataset.Retina.ANCHOR_RATIOS = (0.5, 1, 2)
+dataset.Retina.NUM_ANCHORS = len(dataset.Retina.ANCHOR_SCALES) * len(dataset.Retina.ANCHOR_RATIOS)
+dataset.Retina.CLASS_ID = [0, 1, 2, 3, 4, 5, 6, 7, 8,9,10,11]
+dataset.Retina.CLASSES = ['Background','Macula','OpticDisk','Laser Photocoagulation Spot-6108', \
                     'Bleeding','Stage 2: ridge','Stage 1: demarcation line', \
                     'artifact','Stage 3: ridge with neovascularization','proliferation', \
                     'Retina detachment','Carcinoma']

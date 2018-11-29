@@ -7,8 +7,8 @@ def load_gt_roidb(dataset_name, image_set_name, root_path, dataset_path,
                   flip=False):
     """ load ground truth roidb """
     imdb = eval(dataset_name)(image_set_name, root_path, dataset_path,
-                dataset.ROPRetina.CLASSES,
-                dataset.ROPRetina.CLASS_ID)
+                dataset.Retina.CLASSES,
+                dataset.Retina.CLASS_ID)
     roidb = imdb.gt_roidb()
     if flip:
         roidb = imdb.append_flipped_images(roidb)
@@ -18,7 +18,9 @@ def load_gt_roidb(dataset_name, image_set_name, root_path, dataset_path,
 def load_proposal_roidb(dataset_name, image_set_name, root_path, dataset_path,
                         proposal='rpn', append_gt=True, flip=False):
     """ load proposal roidb (append_gt when training) """
-    imdb = eval(dataset_name)(image_set_name, root_path, dataset_path)
+    imdb = eval(dataset_name)(image_set_name, root_path, dataset_path,
+                dataset.Retina.CLASSES,
+                dataset.Retina.CLASS_ID)
     gt_roidb = imdb.gt_roidb()
     roidb = eval('imdb.' + proposal + '_roidb')(gt_roidb, append_gt)
     if flip:
