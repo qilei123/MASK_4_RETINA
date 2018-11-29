@@ -1,0 +1,10 @@
+0-(Microaneurysms)-4238
+1-(Hemorrhages)-10337
+2-(Hard Exudate)-4707
+3-(Cotton Wool Spot)-351
+4-(New Vessels)-49
+5-(Fibrous Proliferation)-34
+6-(Pre Retinal Hemorrhages)-31
+7-(IRMA - Intraretinal Microvascular Abnormities)-25
+8-(Venous Beading)-15
+9-(Vitreous Hemorrhages)-14
