@@ -3,8 +3,8 @@ export PYTHONUNBUFFERED=1
 export MXNET_ENABLE_GPU_P2P=0
 export PYTHONPATH=${PYTHONPATH}:incubator-mxnet/python/
 
-TRAIN_DIR=/home/qileimail123/data0/RetinaImg/ROP_COCO/
-#TRAIN_DIR=/home/qileimail123/data0/RetinaImg/DR_COCO/
+#TRAIN_DIR=/home/qileimail123/data0/RetinaImg/ROP_COCO/
+TRAIN_DIR=/home/qileimail123/data0/RetinaImg/DR_COCO/
 DATASET=Retina
 SET=train2014
 TEST_SET=val2014
@@ -19,6 +19,6 @@ python train_alternate_mask_fpn.py \
     --pretrained model/resnet-50 \
     --prefix ${TRAIN_DIR} \
     --pretrained_epoch 0 \
-   --gpu 0 & tee -a ${TRAIN_DIR}/log/mask_rop_train.log
-#    --gpu 1 & tee -a ${TRAIN_DIR}/log/mask_dr_train.log
+#   --gpu 0 & tee -a ${TRAIN_DIR}/log/mask_rop_train.log
+    --gpu 1 & tee -a ${TRAIN_DIR}/log/mask_dr_train.log
 
