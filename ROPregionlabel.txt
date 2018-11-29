@@ -1,0 +1,11 @@
+0-Macula-5486
+1-OpticDisk-5832
+2-Laser Photocoagulation Spot-6108
+3-bleeding-1721
+4-Stage 2: ridge-1434
+5-Stage 1: demarcation line-245
+6-artifact-4475
+7-Stage 3: ridge with neovascularization-1312
+8-proliferation-705
+9-Retina detachment-140
+10-carcinoma-21

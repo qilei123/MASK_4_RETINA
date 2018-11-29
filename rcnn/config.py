@@ -16,12 +16,16 @@ config.FIXED_PARAMS_SHARED = ['conv0', 'stage1', 'stage2', 'stage3', 'stage4',
                               'gamma', 'beta']
 
 # dataset related params
-config.NUM_CLASSES = 9
+config.NUM_CLASSES = 12
 config.SCALES = [(1024, 2048)]  # first is scale (the shorter side); second is max size
 config.ANCHOR_SCALES = (8,)
 config.ANCHOR_RATIOS = (0.5, 1, 2)
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)
-config.CLASS_ID = [0, 24, 25, 26, 27, 28, 31, 32, 33]
+config.CLASS_ID = [0, 1, 2, 3, 4, 5, 6, 7, 8,9,10,11]
+config.CLASSES = ['Background','Macula','OpticDisk','Laser Photocoagulation Spot-6108', \
+                    'Bleeding','Stage 2: ridge','Stage 1: demarcation line', \
+                    'artifact','Stage 3: ridge with neovascularization','proliferation', \
+                    'Retina detachment','Carcinoma']
 
 config.TRAIN = edict()
 
@@ -107,7 +111,7 @@ default.pretrained = 'model/resnet-50'
 default.pretrained_epoch = 0
 default.base_lr = 0.004
 # default dataset
-default.dataset = 'Cityscape'
+default.dataset = 'Retina'
 default.image_set = 'train'
 default.test_image_set = 'val'
 default.root_path = 'data'
@@ -148,17 +152,21 @@ network.resnet_fpn.FIXED_PARAMS_SHARED = ['conv0', 'stage1', 'stage2', 'stage3',
 # dataset settings
 dataset = edict()
 
-dataset.Cityscape = edict()
-dataset.Cityscape.image_set = 'train'
-dataset.Cityscape.test_image_set = 'val'
-dataset.Cityscape.root_path = 'data'
-dataset.Cityscape.dataset_path = 'data/cityscape'
-dataset.Cityscape.NUM_CLASSES = 9
-dataset.Cityscape.SCALES = [(1024, 2048)]
-dataset.Cityscape.ANCHOR_SCALES = (8,)
-dataset.Cityscape.ANCHOR_RATIOS = (0.5, 1, 2)
-dataset.Cityscape.NUM_ANCHORS = len(dataset.Cityscape.ANCHOR_SCALES) * len(dataset.Cityscape.ANCHOR_RATIOS)
-dataset.Cityscape.CLASS_ID = [0, 24, 25, 26, 27, 28, 31, 32, 33]
+dataset.ROPRetina = edict()
+dataset.ROPRetina.image_set = 'train2014'
+dataset.ROPRetina.test_image_set = 'val2014'
+dataset.ROPRetina.root_path = '/home/qileimail123/data0/RetinaImg'
+dataset.ROPRetina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
+dataset.ROPRetina.NUM_CLASSES = 12
+dataset.ROPRetina.SCALES = [(1024, 2048)]
+dataset.ROPRetina.ANCHOR_SCALES = (8,)
+dataset.ROPRetina.ANCHOR_RATIOS = (0.5, 1, 2)
+dataset.ROPRetina.NUM_ANCHORS = len(dataset.ROPRetina.ANCHOR_SCALES) * len(dataset.ROPRetina.ANCHOR_RATIOS)
+dataset.ROPRetina.CLASS_ID = [0, 24, 25, 26, 27, 28, 31, 32, 33]
+dataset.ROPRetina.CLASSES = ['Background','Macula','OpticDisk','Laser Photocoagulation Spot-6108', \
+                    'Bleeding','Stage 2: ridge','Stage 1: demarcation line', \
+                    'artifact','Stage 3: ridge with neovascularization','proliferation', \
+                    'Retina detachment','Carcinoma']
 
 def generate_config(_network, _dataset):
     for k, v in network[_network].items():
