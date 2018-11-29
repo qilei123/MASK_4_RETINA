@@ -162,7 +162,7 @@ dataset.ROPRetina.SCALES = [(1024, 2048)]
 dataset.ROPRetina.ANCHOR_SCALES = (8,)
 dataset.ROPRetina.ANCHOR_RATIOS = (0.5, 1, 2)
 dataset.ROPRetina.NUM_ANCHORS = len(dataset.ROPRetina.ANCHOR_SCALES) * len(dataset.ROPRetina.ANCHOR_RATIOS)
-dataset.ROPRetina.CLASS_ID = [0, 24, 25, 26, 27, 28, 31, 32, 33]
+dataset.ROPRetina.CLASS_ID = [0, 1, 2, 3, 4, 5, 6, 7, 8,9,10,11]
 dataset.ROPRetina.CLASSES = ['Background','Macula','OpticDisk','Laser Photocoagulation Spot-6108', \
                     'Bleeding','Stage 2: ridge','Stage 1: demarcation line', \
                     'artifact','Stage 3: ridge with neovascularization','proliferation', \

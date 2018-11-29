@@ -111,7 +111,7 @@ class Retina(IMDB):
         for a given index, load image and bounding boxes info from a single image list
         :return: list of record['boxes', 'gt_classes', 'ins_id', 'ins_seg', 'gt_overlaps', 'flipped']
         """
-        imglist_file = os.path.join(self.data_path, 'imglists', self.image_set + '.lst')
+        imglist_file = os.path.join(self.data_path, 'annotations', self.image_set + '.lst')
         assert os.path.exists(imglist_file), 'Path does not exist: {}'.format(imglist_file)
         imgfiles_list = []
         with open(imglist_file, 'r') as f:
@@ -120,7 +120,7 @@ class Retina(IMDB):
                 label = line.strip().split('\t')
                 file_list['img_id'] = label[0]
                 file_list['img_path'] = label[1]
-                file_list['ins_seg_path'] = label[2].replace('labelTrainIds', 'instanceIds')
+                file_list['ins_seg_path'] = label[2].replace('labelIds', 'instanceIds')
                 imgfiles_list.append(file_list)
 
         assert len(imgfiles_list) == self.num_images, 'number of boxes matrix must match number of images'
