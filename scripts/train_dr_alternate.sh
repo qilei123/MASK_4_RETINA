@@ -19,6 +19,5 @@ python train_alternate_mask_fpn.py \
     --pretrained model/resnet-50 \
     --prefix ${TRAIN_DIR} \
     --pretrained_epoch 0 \
-#   --gpu 0 & tee -a ${TRAIN_DIR}/log/mask_rop_train.log
     --gpu 1 & tee -a ${TRAIN_DIR}log/mask_dr_train.log
 
