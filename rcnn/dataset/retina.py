@@ -1,5 +1,5 @@
 """
-Cityscape Database
+Retina Database
 """
 
 import cv2
@@ -10,8 +10,8 @@ import PIL.Image as Image
 from imdb import IMDB
 from ..processing.bbox_transform import bbox_overlaps
 
-class Cityscape(IMDB):
-    def __init__(self, image_set, root_path, dataset_path):
+class Retina(IMDB):
+    def __init__(self, image_set, root_path, dataset_path,classes,class_id):
         """
         fill basic information to initialize imdb
         :param image_set: train or val or trainval or test
@@ -19,13 +19,13 @@ class Cityscape(IMDB):
         :param dataset_path: data and results
         :return: imdb object
         """
-        super(Cityscape, self).__init__('cityscape', image_set, root_path, dataset_path)
+        super(Retina, self).__init__('retina', image_set, root_path, dataset_path)
         self.image_set = image_set
         self.root_path = root_path
         self.data_path = dataset_path
 
-        self.classes = ['__background__', 'person', 'rider', 'car', 'truck', 'bus', 'train', 'motorcycle', 'bicycle']
-        self.class_id = [0, 24, 25, 26, 27, 28, 31, 32, 33]
+        self.classes = classes
+        self.class_id = class_id
         self.num_classes = len(self.classes)
         self.image_set_index = self.load_image_set_index()
         self.num_images = len(self.image_set_index)
@@ -67,7 +67,7 @@ class Cityscape(IMDB):
                 roidb = cPickle.load(f)
             print '{} gt roidb loaded from {}'.format(self.name, cache_file)
             return roidb
-        gt_roidb = self.load_cityscape_annotations()
+        gt_roidb = self.load_retina_annotations()
         with open(cache_file, 'wb') as f:
             cPickle.dump(gt_roidb, f, cPickle.HIGHEST_PROTOCOL)
 
@@ -106,7 +106,7 @@ class Cityscape(IMDB):
                 gt_overlaps.append(overlaps)
         return np.asarray(boxes), np.asarray(gt_classes), np.asarray(ins_id), seg_gt, np.asarray(gt_overlaps)
 
-    def load_cityscape_annotations(self):
+    def load_retina_annotations(self):
         """
         for a given index, load image and bounding boxes info from a single image list
         :return: list of record['boxes', 'gt_classes', 'ins_id', 'ins_seg', 'gt_overlaps', 'flipped']
@@ -196,7 +196,7 @@ class Cityscape(IMDB):
             filename = image_path.split("/")[-1]
             filename = filename.replace('.png', '')
 
-            result_path = 'data/cityscape/results/pred/'
+            result_path = 'data/retina/results/pred/'
 
             print 'writing results for: ', filename
             result_txt = os.path.join(result_path, filename)
