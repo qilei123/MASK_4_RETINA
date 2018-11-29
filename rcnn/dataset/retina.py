@@ -19,7 +19,7 @@ class Retina(IMDB):
         :param dataset_path: data and results
         :return: imdb object
         """
-        super(Retina, self).__init__('retina', image_set, root_path, dataset_path)
+        super(Retina, self).__init__('Retina', image_set, root_path, dataset_path)
         self.image_set = image_set
         self.root_path = root_path
         self.data_path = dataset_path

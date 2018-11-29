@@ -6,9 +6,7 @@ import pdb
 def load_gt_roidb(dataset_name, image_set_name, root_path, dataset_path,
                   flip=False):
     """ load ground truth roidb """
-    imdb = eval(dataset_name)(image_set_name, root_path, dataset_path,
-                dataset.Retina.CLASSES,
-                dataset.Retina.CLASS_ID)
+    imdb = eval(dataset_name)(image_set_name, root_path, dataset_path,dataset.Retina.CLASSES,dataset.Retina.CLASS_ID)
     roidb = imdb.gt_roidb()
     if flip:
         roidb = imdb.append_flipped_images(roidb)
