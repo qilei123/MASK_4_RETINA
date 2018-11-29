@@ -8,7 +8,7 @@ TRAIN_DIR=/home/qileimail123/data0/RetinaImg/DR_COCO/
 DATASET=Retina
 SET=train2014
 TEST_SET=val2014
-mkdir -p ${TRAIN_DIR}
+mkdir -p ${TRAIN_DIR}log
 
 # Train
 python train_alternate_mask_fpn.py \
@@ -20,5 +20,5 @@ python train_alternate_mask_fpn.py \
     --prefix ${TRAIN_DIR} \
     --pretrained_epoch 0 \
 #   --gpu 0 & tee -a ${TRAIN_DIR}/log/mask_rop_train.log
-    --gpu 1 & tee -a ${TRAIN_DIR}/log/mask_dr_train.log
+    --gpu 1 & tee -a ${TRAIN_DIR}log/mask_dr_train.log
 
