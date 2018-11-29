@@ -161,7 +161,7 @@ dataset.Retina.SCALES = [(1024, 2048)]
 dataset.Retina.ANCHOR_SCALES = (8,)
 dataset.Retina.ANCHOR_RATIOS = (0.5, 1, 2)
 dataset.Retina.NUM_ANCHORS = len(dataset.Retina.ANCHOR_SCALES) * len(dataset.Retina.ANCHOR_RATIOS)
-
+'''
 dataset.Retina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
 dataset.Retina.NUM_CLASSES = 12
 dataset.Retina.CLASS_ID = [0, 1, 2, 3, 4, 5, 6, 7, 8,9,10,11]
@@ -169,7 +169,7 @@ dataset.Retina.CLASSES = ['Background','Macula','OpticDisk','Laser Photocoagulat
                     'Bleeding','Stage 2: ridge','Stage 1: demarcation line', \
                     'artifact','Stage 3: ridge with neovascularization','proliferation', \
                     'Retina detachment','Carcinoma']
-
+'''
 dataset.Retina.dataset_path = '/home/qileimail123/data0/RetinaImg/DR_COCO'
 dataset.Retina.NUM_CLASSES = 11
 dataset.Retina.CLASS_ID = [0, 1, 2, 3, 4, 5, 6, 7, 8,9,10]
