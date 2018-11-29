@@ -36,7 +36,7 @@ class Retina(IMDB):
         find out which indexes correspond to given image set (train or val)
         :return:
         """
-        image_set_index_file = os.path.join(self.data_path, 'imglists', self.image_set + '.lst')
+        image_set_index_file = os.path.join(self.data_path, 'annotations', self.image_set + '.lst')
         assert os.path.exists(image_set_index_file), 'Path does not exist: {}'.format(image_set_index_file)
         image_set_index = []
         with open(image_set_index_file, 'r') as f:
