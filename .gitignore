@@ -85,3 +85,5 @@ model
 model/
 data
 data/
+build_mxnet.sh
+incubator-mxnet
