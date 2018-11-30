@@ -2,7 +2,8 @@ import argparse
 import pprint
 import mxnet as mx
 
-from ..config import config, default, generate_config,dataset
+from ..config import config, default, generate_config
+from ..config import dataset as Dataset
 from ..symbol import *
 from ..dataset import *
 from ..core.loader import TestLoader
@@ -23,8 +24,8 @@ def test_rpn(network, dataset, image_set, root_path, dataset_path,
     sym = eval('get_' + network + '_rpn_test')(num_anchors=config.NUM_ANCHORS)
 
     # load dataset and prepare imdb for training
-    imdb = eval(dataset)(image_set, root_path, dataset_path,dataset.Retina.CLASSES,
-                dataset.Retina.CLASS_ID)
+    imdb = eval(dataset)(image_set, root_path, dataset_path,Dataset.Retina.CLASSES,
+                Dataset.Retina.CLASS_ID)
     roidb = imdb.gt_roidb()
     test_data = TestLoader(roidb, batch_size=1, shuffle=shuffle, has_rpn=True)
 
