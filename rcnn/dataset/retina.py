@@ -158,6 +158,8 @@ class Retina(IMDB):
         :return: roidb: [image_index]['boxes', 'gt_classes', 'gt_overlaps', 'flipped']
         """
         print 'append flipped images to roidb'
+        print self.num_images
+        print len(roidb)
         assert self.num_images == len(roidb)
         for i in range(self.num_images):
             roi_rec = roidb[i]

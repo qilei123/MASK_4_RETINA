@@ -161,7 +161,7 @@ dataset.Retina.SCALES = [(1024, 2048)]
 dataset.Retina.ANCHOR_SCALES = (8,)
 dataset.Retina.ANCHOR_RATIOS = (0.5, 1, 2)
 dataset.Retina.NUM_ANCHORS = len(dataset.Retina.ANCHOR_SCALES) * len(dataset.Retina.ANCHOR_RATIOS)
-'''
+
 config.TRAIN.SCALE = True
 dataset.Retina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
 dataset.Retina.NUM_CLASSES = 12
@@ -179,7 +179,7 @@ dataset.Retina.CLASSES = ['Background','Microaneurysms','Hemorrhages','Hard Exud
                     'Cotton Wool Spot','New Vessels','Fibrous Proliferation', \
                     'Pre Retinal Hemorrhages','Intraretinal Microvascular Abnormities','Venous Beading', \
                     'Vitreous Hemorrhages']
-
+'''
 def generate_config(_network, _dataset):
     for k, v in network[_network].items():
         if k in config:
