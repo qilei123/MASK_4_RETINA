@@ -126,7 +126,7 @@ class Retina(IMDB):
         assert len(imgfiles_list) == self.num_images, 'number of boxes matrix must match number of images'
         roidb = []
         for im in range(self.num_images):
-            print '===============================', im, '====================================='
+            #print '===============================', im, '====================================='
             roi_rec = dict()
             roi_rec['image'] = os.path.join(self.data_path, imgfiles_list[im]['img_path'])
             size = cv2.imread(roi_rec['image']).shape
