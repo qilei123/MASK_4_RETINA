@@ -3,6 +3,7 @@ import pprint
 import mxnet as mx
 
 from ..config import config, default, generate_config
+from ..config import dataset as Dataset
 from ..symbol import *
 from ..dataset import *
 from ..core.loader import TestLoader
@@ -23,7 +24,8 @@ def test_maskrcnn(network, dataset, image_set, root_path, dataset_path, result_p
     # load symbol and testing data
     if has_rpn:
         sym = eval('get_' + network + '_mask_test')(num_classes=config.NUM_CLASSES, num_anchors=config.NUM_ANCHORS)
-        imdb = eval(dataset)(image_set, root_path, dataset_path)
+        imdb = eval(dataset)(image_set, root_path, dataset_path,Dataset.Retina.CLASSES,
+                Dataset.Retina.CLASS_ID)
         roidb = imdb.gt_roidb()
     else:
         raise NotImplementedError
