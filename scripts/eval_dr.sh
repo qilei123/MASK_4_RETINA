@@ -5,8 +5,8 @@ export PYTHONPATH=${PYTHONPATH}:incubator-mxnet/python/
 
 TRAIN_DIR=/home/qileimail123/data0/RetinaImg/DR_COCO/
 DATASET=Retina
-SET=train
-TEST_SET=val
+SET=train2014
+TEST_SET=val2014
 
 # Test
 python eval_maskrcnn.py \
