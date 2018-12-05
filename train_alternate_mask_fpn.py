@@ -18,7 +18,7 @@ def alternate_train(args, ctx, pretrained, epoch,
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
     # basic config
-    begin_epoch = 0
+    begin_epoch = 10
     config.TRAIN.BG_THRESH_LO = 0.0
 
     # model path
@@ -45,6 +45,7 @@ def alternate_train(args, ctx, pretrained, epoch,
                ctx, pretrained, epoch, model_path+'/rcnn1', begin_epoch, rcnn_epoch,
                train_shared=False, lr=rcnn_lr, lr_step=rcnn_lr_step, proposal='rpn', maskrcnn_stage='rcnn1')
     '''
+    '''
     logging.info('########## TRAIN RPN WITH RCNN INIT')
     train_rpn(args.network, args.dataset, args.image_set, args.root_path, args.dataset_path,
               args.frequent, args.kvstore, args.work_load_list, args.no_flip, args.no_shuffle, args.resume,
@@ -60,7 +61,7 @@ def alternate_train(args, ctx, pretrained, epoch,
 
     logger.info('########## COMBINE RPN2 WITH RCNN1')
     combine_model(model_path+'/rpn2', rpn_epoch, model_path+'/rcnn1', rcnn_epoch, model_path+'/rcnn2', 0)
-
+    '''
     logger.info('########## TRAIN RCNN WITH RPN INIT AND DETECTION')
     train_maskrcnn(args.network, args.dataset, args.image_set, args.root_path, args.dataset_path,
                args.frequent, args.kvstore, args.work_load_list, args.no_flip, args.no_shuffle, args.resume,
