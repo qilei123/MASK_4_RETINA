@@ -5,7 +5,8 @@ config = edict()
 
 # network related params
 config.PIXEL_MEANS = np.array([103.939, 116.779, 123.68])
-config.ROIALIGN = True
+config.ROIALIGN = False
+config.DCNROI = True
 
 config.RPN_FEAT_STRIDE = [64, 32, 16, 8, 4]
 config.RCNN_FEAT_STRIDE = [32, 16, 8, 4]
@@ -138,7 +139,8 @@ network = edict()
 network.vgg = edict()
 
 network.resnet_fpn = edict()
-network.resnet_fpn.pretrained = 'model/resnet-50'
+network.resnet_fpn = '101'
+network.resnet_fpn.pretrained = 'model/resnet-'+network.resnet_fpn
 network.resnet_fpn.pretrained_epoch = 0
 network.resnet_fpn.PIXEL_MEANS = np.array([0, 0, 0])
 network.resnet_fpn.RPN_FEAT_STRIDE = [64, 32, 16, 8, 4]

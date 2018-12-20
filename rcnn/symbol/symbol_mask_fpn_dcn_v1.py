@@ -74,29 +74,116 @@ def get_resnet_conv(data):
 
 def get_resnet_conv_down(conv_feat):
     # C5 to P5, 1x1 dimension reduction to 256
+    
     P5 = mx.symbol.Convolution(data=conv_feat[0], kernel=(1, 1), num_filter=256, name="P5_lateral")
-
+    '''
+    P5_offset = mx.symbol.Convolution(name='P5_offset', data = conv_feat[0],
+                                                    num_filter=18, pad=(1, 1), kernel=(3, 3), stride=(1, 1))
+    P5 = mx.contrib.symbol.DeformableConvolution(name='P5_aggregate', data=conv_feat[0], offset=P5_offset,
+                                                                num_filter=256, pad=(1, 1), kernel=(3, 3),
+                                                                stride=(1, 1)) 
+    '''
     # P5 2x upsampling + C4 = P4
     P5_up   = mx.symbol.UpSampling(P5, scale=2, sample_type='nearest', workspace=512, name='P5_upsampling', num_args=1)
     P4_la   = mx.symbol.Convolution(data=conv_feat[1], kernel=(1, 1), num_filter=256, name="P4_lateral")
     P5_clip = mx.symbol.Crop(*[P5_up, P4_la], name="P4_clip")
     P4      = mx.sym.ElementWiseSum(*[P5_clip, P4_la], name="P4_sum")
+    
     P4      = mx.symbol.Convolution(data=P4, kernel=(3, 3), pad=(1, 1), num_filter=256, name="P4_aggregate")
+    '''
+    P4_offset = mx.symbol.Convolution(name='P4_offset', data = P4,
+                                                    num_filter=18, pad=(1, 1), kernel=(3, 3), stride=(1, 1))
+    P4 = mx.contrib.symbol.DeformableConvolution(name='P4_aggregate', data=P4, offset=P4_offset,
+                                                                num_filter=256, pad=(1, 1), kernel=(3, 3),
+                                                                stride=(1, 1))  
+    '''
+    # P4 2x upsampling + C3 = P3
+    P4_up   = mx.symbol.UpSampling(P4, scale=2, sample_type='nearest', workspace=512, name='P4_upsampling', num_args=1)
+    P3_la   = mx.symbol.Convolution(data=conv_feat[2], kernel=(1, 1), num_filter=256, name="P3_lateral")
+    P4_clip = mx.symbol.Crop(*[P4_up, P3_la], name="P3_clip")
+    P3      = mx.sym.ElementWiseSum(*[P4_clip, P3_la], name="P3_sum")
+    
+    P3      = mx.symbol.Convolution(data=P3, kernel=(3, 3), pad=(1, 1), num_filter=256, name="P3_aggregate")
+    '''
+    P3_offset = mx.symbol.Convolution(name='P3_offset', data = P3,
+                                                    num_filter=18, pad=(1, 1), kernel=(3, 3), stride=(1, 1))
+    P3 = mx.contrib.symbol.DeformableConvolution(name='P3_aggregate', data=P3, offset=P3_offset,
+                                                                num_filter=256, pad=(1, 1), kernel=(3, 3),
+                                                                stride=(1, 1)) 
+    '''
+    # P3 2x upsampling + C2 = P2
+    P3_up   = mx.symbol.UpSampling(P3, scale=2, sample_type='nearest', workspace=512, name='P3_upsampling', num_args=1)
+    P2_la   = mx.symbol.Convolution(data=conv_feat[3], kernel=(1, 1), num_filter=256, name="P2_lateral")
+    P3_clip = mx.symbol.Crop(*[P3_up, P2_la], name="P2_clip")
+    P2      = mx.sym.ElementWiseSum(*[P3_clip, P2_la], name="P2_sum")
+    
+    P2      = mx.symbol.Convolution(data=P2, kernel=(3, 3), pad=(1, 1), num_filter=256, name="P2_aggregate")
+    '''
+    P2_offset = mx.symbol.Convolution(name='P2_offset', data = P2,
+                                                    num_filter=18, pad=(1, 1), kernel=(3, 3), stride=(1, 1))
+    P2 = mx.contrib.symbol.DeformableConvolution(name='P2_aggregate', data=P2, offset=P2_offset,
+                                                                num_filter=256, pad=(1, 1), kernel=(3, 3),
+                                                                stride=(1, 1)) 
+    '''
+    # P6 2x subsampling P5
+    P6 = mx.symbol.Pooling(data=P5, kernel=(3, 3), stride=(2, 2), pad=(1, 1), pool_type='max', name='P6_subsampling')
+
+    conv_fpn_feat = dict()
+    conv_fpn_feat.update({"stride64":P6, "stride32":P5, "stride16":P4, "stride8":P3, "stride4":P2})
+
+    return conv_fpn_feat, [P6, P5, P4, P3, P2]
+
+def get_resnet_conv_down_dcn_v1(conv_feat):
+    # C5 to P5, 1x1 dimension reduction to 256
+    '''
+    P5 = mx.symbol.Convolution(data=conv_feat[0], kernel=(1, 1), num_filter=256, name="P5_lateral")
+    '''
+    P5_offset = mx.symbol.Convolution(name='P5_offset', data = conv_feat[0],
+                                                    num_filter=18, pad=(1, 1), kernel=(3, 3), stride=(1, 1))
+    P5 = mx.contrib.symbol.DeformableConvolution(name='P5_aggregate', data=conv_feat[0], offset=P5_offset,
+                                                                num_filter=256, pad=(1, 1), kernel=(3, 3),
+                                                                stride=(1, 1)) 
+    # P5 2x upsampling + C4 = P4
+    P5_up   = mx.symbol.UpSampling(P5, scale=2, sample_type='nearest', workspace=512, name='P5_upsampling', num_args=1)
+    P4_la   = mx.symbol.Convolution(data=conv_feat[1], kernel=(1, 1), num_filter=256, name="P4_lateral")
+    P5_clip = mx.symbol.Crop(*[P5_up, P4_la], name="P4_clip")
+    P4      = mx.sym.ElementWiseSum(*[P5_clip, P4_la], name="P4_sum")
+    '''
+    P4      = mx.symbol.Convolution(data=P4, kernel=(3, 3), pad=(1, 1), num_filter=256, name="P4_aggregate")
+    '''
+    P4_offset = mx.symbol.Convolution(name='P4_offset', data = P4,
+                                                    num_filter=18, pad=(1, 1), kernel=(3, 3), stride=(1, 1))
+    P4 = mx.contrib.symbol.DeformableConvolution(name='P4_aggregate', data=P4, offset=P4_offset,
+                                                                num_filter=256, pad=(1, 1), kernel=(3, 3),
+                                                                stride=(1, 1))  
 
     # P4 2x upsampling + C3 = P3
     P4_up   = mx.symbol.UpSampling(P4, scale=2, sample_type='nearest', workspace=512, name='P4_upsampling', num_args=1)
     P3_la   = mx.symbol.Convolution(data=conv_feat[2], kernel=(1, 1), num_filter=256, name="P3_lateral")
     P4_clip = mx.symbol.Crop(*[P4_up, P3_la], name="P3_clip")
     P3      = mx.sym.ElementWiseSum(*[P4_clip, P3_la], name="P3_sum")
+    '''
     P3      = mx.symbol.Convolution(data=P3, kernel=(3, 3), pad=(1, 1), num_filter=256, name="P3_aggregate")
+    '''
+    P3_offset = mx.symbol.Convolution(name='P3_offset', data = P3,
+                                                    num_filter=18, pad=(1, 1), kernel=(3, 3), stride=(1, 1))
+    P3 = mx.contrib.symbol.DeformableConvolution(name='P3_aggregate', data=P3, offset=P3_offset,
+                                                                num_filter=256, pad=(1, 1), kernel=(3, 3),
+                                                                stride=(1, 1)) 
 
     # P3 2x upsampling + C2 = P2
     P3_up   = mx.symbol.UpSampling(P3, scale=2, sample_type='nearest', workspace=512, name='P3_upsampling', num_args=1)
     P2_la   = mx.symbol.Convolution(data=conv_feat[3], kernel=(1, 1), num_filter=256, name="P2_lateral")
     P3_clip = mx.symbol.Crop(*[P3_up, P2_la], name="P2_clip")
     P2      = mx.sym.ElementWiseSum(*[P3_clip, P2_la], name="P2_sum")
+    '''
     P2      = mx.symbol.Convolution(data=P2, kernel=(3, 3), pad=(1, 1), num_filter=256, name="P2_aggregate")
-
+    '''
+    P2_offset = mx.symbol.Convolution(name='P2_offset', data = P2,
+                                                    num_filter=18, pad=(1, 1), kernel=(3, 3), stride=(1, 1))
+    P2 = mx.contrib.symbol.DeformableConvolution(name='P2_aggregate', data=P2, offset=P2_offset,
+                                                                num_filter=256, pad=(1, 1), kernel=(3, 3),
+                                                                stride=(1, 1)) 
     # P6 2x subsampling P5
     P6 = mx.symbol.Pooling(data=P5, kernel=(3, 3), stride=(2, 2), pad=(1, 1), pool_type='max', name='P6_subsampling')
 
@@ -499,11 +586,37 @@ def get_resnet_fpn_maskrcnn(num_classes=config.NUM_CLASSES):
     rcnn_bbox_pred_list = []
     mask_deconv_act_list = []
     for stride in rcnn_feat_stride:
-        if config.ROIALIGN:
+        if config.ROIALIGN:    
             roi_pool = mx.symbol.ROIAlign(
                 name='roi_pool', data=conv_fpn_feat['stride%s'%stride], rois=rois['rois_stride%s' % stride],
                 pooled_size=(14, 14),
                 spatial_scale=1.0 / stride)
+        elif config.DCNROI:    
+            offset_t = mx.contrib.sym.DeformablePSROIPooling(name='offset_t', 
+                                                            data=conv_fpn_feat['stride%s'%stride], 
+                                                            rois=rois['rois_stride%s' % stride], 
+                                                            group_size=1, 
+                                                            pooled_size=14,
+                                                            sample_per_part=4, 
+                                                            no_trans=True, 
+                                                            part_size=14, 
+                                                            output_dim=256, 
+                                                            spatial_scale=1.0 / stride)
+            offset = mx.sym.FullyConnected(name='offset', data=offset_t, num_hidden=7 * 7 * 2, lr_mult=0.01)
+            offset_reshape = mx.sym.Reshape(data=offset, shape=(-1, 2, 7, 7), name="offset_reshape")
+            roi_pool = mx.contrib.sym.DeformablePSROIPooling(name='roi_pool', 
+                                                                        data=conv_fpn_feat['stride%s'%stride], 
+                                                                        rois=rois['rois_stride%s' % stride], 
+                                                                        trans=offset_reshape, 
+                                                                        group_size=1, 
+                                                                        pooled_size=14, 
+                                                                        sample_per_part=4,
+                                                                        no_trans=False, 
+                                                                        part_size=14, 
+                                                                        output_dim=256, 
+                                                                        spatial_scale=1.0 / stride, 
+                                                                        trans_std=0.1)
+
         else:
             roi_pool = mx.symbol.ROIPooling(
                 name='roi_pool', data=conv_fpn_feat['stride%s'%stride], rois=rois['rois_stride%s' % stride],
