@@ -139,8 +139,8 @@ network = edict()
 network.vgg = edict()
 
 network.resnet_fpn = edict()
-network.resnet_fpn = '101'
-network.resnet_fpn.pretrained = 'model/resnet-'+str(network.resnet_fpn)
+network.resnet_fpn.resnet_fpn = '101'
+network.resnet_fpn.pretrained = 'model/resnet-'+str(network.resnet_fpn.resnet_fpn)
 network.resnet_fpn.pretrained_epoch = 0
 network.resnet_fpn.PIXEL_MEANS = np.array([0, 0, 0])
 network.resnet_fpn.RPN_FEAT_STRIDE = [64, 32, 16, 8, 4]
