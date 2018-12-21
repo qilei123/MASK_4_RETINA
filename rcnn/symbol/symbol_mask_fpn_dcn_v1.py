@@ -7,7 +7,7 @@ eps = 2e-5
 use_global_stats = True
 workspace = 512
 res_deps = {'50': (3, 4, 6, 3), '101': (3, 4, 23, 3), '152': (3, 8, 36, 3), '200': (3, 24, 36, 3)}
-units = res_deps[config.network.resnet_fpn]
+units = res_deps[config.network.resnet_fpn.resnet_fpn]
 filter_list = [256, 512, 1024, 2048]
 
 def residual_unit(data, num_filter, stride, dim_match, name):
