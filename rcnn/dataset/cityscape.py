@@ -75,12 +75,12 @@ class Cityscape(IMDB):
 
     def load_from_seg(self, ins_seg_path):
         seg_gt = os.path.join(self.data_path, ins_seg_path)
-        print seg_gt
+        #print seg_gt
         assert os.path.exists(seg_gt), 'Path does not exist: {}'.format(seg_gt)
         im = Image.open(seg_gt)
         pixel = list(im.getdata())
         pixel = np.array(pixel).reshape([im.size[1], im.size[0]])
-        print im.size
+        #print im.size
         boxes = []
         gt_classes = []
         ins_id = []
