@@ -19,8 +19,8 @@ config.FIXED_PARAMS_SHARED = ['conv0', 'stage1', 'stage2', 'stage3', 'stage4',
 # dataset related params
 config.NUM_CLASSES = 12
 config.SCALES = [(1024, 2048)]  # first is scale (the shorter side); second is max size
-config.ANCHOR_SCALES = (8,)
-config.ANCHOR_RATIOS = (0.5, 1, 2)
+config.ANCHOR_SCALES = (4,8,16,32)
+config.ANCHOR_RATIOS = (0.25,0.5, 1, 2)
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)
 config.CLASS_ID = [0, 1, 2, 3, 4, 5, 6, 7, 8,9,10,11]
 config.CLASSES = ['Background','Macula','OpticDisk','Laser Photocoagulation Spot-6108', \
