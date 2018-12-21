@@ -16,8 +16,8 @@ python train_alternate_mask_fpn.py \
     --dataset ${DATASET} \
     --image_set ${SET} \
     --root_path ${TRAIN_DIR} \
-    --pretrained model/resnet-50 \
-    --prefix ${TRAIN_DIR} \
+    --pretrained model/resnet-101 \
+    --prefix ${TRAIN_DIR}/mask_dcn_v1/ \
     --pretrained_epoch 0 \
     --gpu 0,1,2,3 & tee -a ${TRAIN_DIR}log/mask_dr_train.log
 
