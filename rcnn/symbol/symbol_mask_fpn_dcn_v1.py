@@ -198,7 +198,7 @@ def get_resnet_fpn_mask_test(num_classes=config.NUM_CLASSES, num_anchors=config.
 
     # shared convolutional layers
     conv_feat = get_resnet_conv(data)
-    conv_fpn_feat, _ = get_resnet_conv_down(conv_feat)
+    conv_fpn_feat, _ = get_resnet_conv_down_dcn_v1(conv_feat)
 
     # # shared parameters for predictions
     rpn_conv_weight      = mx.symbol.Variable('rpn_conv_weight')
@@ -366,7 +366,7 @@ def get_resnet_fpn_rpn(num_anchors=config.NUM_ANCHORS):
     conv_feat = get_resnet_conv(data)
 
     # shared convolutional layers, top down
-    conv_fpn_feat, _ = get_resnet_conv_down(conv_feat)
+    conv_fpn_feat, _ = get_resnet_conv_down_dcn_v1(conv_feat)
 
     # shared parameters for predictions
     rpn_conv_weight      = mx.symbol.Variable('rpn_conv_weight')
@@ -437,7 +437,7 @@ def get_resnet_fpn_rpn_test(num_anchors=config.NUM_ANCHORS):
 
     # shared convolutional layers
     conv_feat = get_resnet_conv(data)
-    conv_fpn_feat, _ = get_resnet_conv_down(conv_feat)
+    conv_fpn_feat, _ = get_resnet_conv_down_dcn_v1(conv_feat)
 
     # # shared parameters for predictions
     rpn_conv_weight      = mx.symbol.Variable('rpn_conv_weight')
@@ -558,7 +558,7 @@ def get_resnet_fpn_maskrcnn(num_classes=config.NUM_CLASSES):
     conv_feat = get_resnet_conv(data)
 
     # shared convolutional layers, top down
-    conv_fpn_feat, _ = get_resnet_conv_down(conv_feat)
+    conv_fpn_feat, _ = get_resnet_conv_down_dcn_v1(conv_feat)
 
     # shared parameters for predictions
     rcnn_fc6_weight     = mx.symbol.Variable('rcnn_fc6_weight')
