@@ -166,7 +166,7 @@ dataset.Retina.NUM_ANCHORS = len(dataset.Retina.ANCHOR_SCALES) * len(dataset.Ret
 
 dataset.name = 'DR' #DR,ROP
 
-if dataset.name=='ROP'
+if dataset.name=='ROP':
     config.TRAIN.SCALE = True
     dataset.Retina.dataset_path = '/home/qileimail123/data0/RetinaImg/ROP_COCO'
     dataset.Retina.NUM_CLASSES = 12
