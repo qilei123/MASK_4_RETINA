@@ -41,7 +41,7 @@ config.TRAIN.SCALE_RANGE = (0.8, 1)
 
 # R-CNN
 # rcnn rois batch size
-config.TRAIN.BATCH_ROIS = 128
+config.TRAIN.BATCH_ROIS = 64
 
 # rcnn rois sampling params
 config.TRAIN.FG_FRACTION = 0.25
@@ -54,7 +54,7 @@ config.TRAIN.BBOX_WEIGHTS = np.array([1.0, 1.0, 1.0, 1.0])
 
 # RPN anchor loader
 # rpn anchors batch size
-config.TRAIN.RPN_BATCH_SIZE = 128
+config.TRAIN.RPN_BATCH_SIZE = 64
 # rpn anchors sampling params
 config.TRAIN.RPN_FG_FRACTION = 0.5
 config.TRAIN.RPN_POSITIVE_OVERLAP = 0.7
@@ -118,7 +118,7 @@ default.test_image_set = 'val'
 default.root_path = 'data'
 default.dataset_path = 'data/cityscape'
 # default training
-default.frequent = 20
+default.frequent = 5
 default.kvstore = 'device'
 # default rpn
 default.rpn_prefix = 'model/rpn'
@@ -129,7 +129,7 @@ default.rpn_lr_step = '6'
 default.rcnn_prefix = 'model/rcnn'
 default.rcnn_epoch = 24
 default.rcnn_lr = default.base_lr
-default.rcnn_lr_step = '20'
+default.rcnn_lr_step = '5'
 # default alternate
 default.alternate_prefix = 'model/alternate'
 
