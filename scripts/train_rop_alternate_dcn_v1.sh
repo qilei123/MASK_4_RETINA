@@ -9,6 +9,7 @@ DATASET=Retina
 SET=train2014
 TEST_SET=val2014
 mkdir -p ${TRAIN_DIR}/log
+mkdir -p ${TRAIN_DIR}/mask_dcn_v1
 
 # Train
 python train_alternate_mask_fpn.py \
