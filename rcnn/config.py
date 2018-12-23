@@ -41,7 +41,7 @@ config.TRAIN.SCALE_RANGE = (0.8, 1)
 
 # R-CNN
 # rcnn rois batch size
-config.TRAIN.BATCH_ROIS = 16
+config.TRAIN.BATCH_ROIS = 8
 
 # rcnn rois sampling params
 config.TRAIN.FG_FRACTION = 0.25
