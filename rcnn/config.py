@@ -54,7 +54,7 @@ config.TRAIN.BBOX_WEIGHTS = np.array([1.0, 1.0, 1.0, 1.0])
 
 # RPN anchor loader
 # rpn anchors batch size
-config.TRAIN.RPN_BATCH_SIZE = 8
+config.TRAIN.RPN_BATCH_SIZE = 4
 # rpn anchors sampling params
 config.TRAIN.RPN_FG_FRACTION = 0.5
 config.TRAIN.RPN_POSITIVE_OVERLAP = 0.7
