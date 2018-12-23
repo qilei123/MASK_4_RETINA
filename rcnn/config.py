@@ -118,7 +118,7 @@ default.test_image_set = 'val'
 default.root_path = 'data'
 default.dataset_path = 'data/cityscape'
 # default training
-default.frequent = 5
+default.frequent = 4
 default.kvstore = 'device'
 # default rpn
 default.rpn_prefix = 'model/rpn'
@@ -129,7 +129,7 @@ default.rpn_lr_step = '6'
 default.rcnn_prefix = 'model/rcnn'
 default.rcnn_epoch = 24
 default.rcnn_lr = default.base_lr
-default.rcnn_lr_step = '5'
+default.rcnn_lr_step = '4'
 # default alternate
 default.alternate_prefix = 'model/alternate'
 
