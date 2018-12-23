@@ -41,7 +41,7 @@ config.TRAIN.SCALE_RANGE = (0.8, 1)
 
 # R-CNN
 # rcnn rois batch size
-config.TRAIN.BATCH_ROIS = 32
+config.TRAIN.BATCH_ROIS = 16
 
 # rcnn rois sampling params
 config.TRAIN.FG_FRACTION = 0.25
@@ -54,7 +54,7 @@ config.TRAIN.BBOX_WEIGHTS = np.array([1.0, 1.0, 1.0, 1.0])
 
 # RPN anchor loader
 # rpn anchors batch size
-config.TRAIN.RPN_BATCH_SIZE = 32
+config.TRAIN.RPN_BATCH_SIZE = 8
 # rpn anchors sampling params
 config.TRAIN.RPN_FG_FRACTION = 0.5
 config.TRAIN.RPN_POSITIVE_OVERLAP = 0.7
