@@ -586,12 +586,13 @@ def get_resnet_fpn_maskrcnn(num_classes=config.NUM_CLASSES):
     rcnn_bbox_pred_list = []
     mask_deconv_act_list = []
     for stride in rcnn_feat_stride:
-        if config.ROIALIGN:    
+        if config.ROIALIGN:
+            '''    
             roi_pool = mx.symbol.ROIAlign(
                 name='roi_pool', data=conv_fpn_feat['stride%s'%stride], rois=rois['rois_stride%s' % stride],
                 pooled_size=(14, 14),
-                spatial_scale=1.0 / stride)
-        elif config.DCNROI:    
+                spatial_scale=1.0 / stride)    
+            '''
             offset_t = mx.contrib.sym.DeformablePSROIPooling(name='offset_t', 
                                                             data=conv_fpn_feat['stride%s'%stride], 
                                                             rois=rois['rois_stride%s' % stride], 

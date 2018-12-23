@@ -5,8 +5,8 @@ config = edict()
 
 # network related params
 config.PIXEL_MEANS = np.array([103.939, 116.779, 123.68])
-config.ROIALIGN = False
-config.DCNROI = True
+config.ROIALIGN = True
+#config.DCNROI = True
 
 config.RPN_FEAT_STRIDE = [64, 32, 16, 8, 4]
 config.RCNN_FEAT_STRIDE = [32, 16, 8, 4]
