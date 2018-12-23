@@ -118,7 +118,7 @@ default.test_image_set = 'val'
 default.root_path = 'data'
 default.dataset_path = 'data/cityscape'
 # default training
-default.frequent = 20
+default.frequent = 10
 default.kvstore = 'device'
 # default rpn
 default.rpn_prefix = 'model/rpn'
