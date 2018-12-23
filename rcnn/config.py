@@ -18,9 +18,9 @@ config.FIXED_PARAMS_SHARED = ['conv0', 'stage1', 'stage2', 'stage3', 'stage4',
 
 # dataset related params
 config.NUM_CLASSES = 12
-config.SCALES = [(1024, 2048)]  # first is scale (the shorter side); second is max size
-config.ANCHOR_SCALES = (8,16,32)
-config.ANCHOR_RATIOS = (0.5, 1, 2)
+config.SCALES = [(512, 1024)]  # first is scale (the shorter side); second is max size
+config.ANCHOR_SCALES = (4,8,16,32)
+config.ANCHOR_RATIOS = (0.25,0.5, 1, 2)
 config.NUM_ANCHORS = len(config.ANCHOR_SCALES) * len(config.ANCHOR_RATIOS)
 config.CLASS_ID = [0, 1, 2, 3, 4, 5, 6, 7, 8,9,10,11]
 config.CLASSES = ['Background','Macula','OpticDisk','Laser Photocoagulation Spot-6108', \
@@ -41,7 +41,7 @@ config.TRAIN.SCALE_RANGE = (0.8, 1)
 
 # R-CNN
 # rcnn rois batch size
-config.TRAIN.BATCH_ROIS = 8
+config.TRAIN.BATCH_ROIS = 256
 
 # rcnn rois sampling params
 config.TRAIN.FG_FRACTION = 0.25
@@ -54,7 +54,7 @@ config.TRAIN.BBOX_WEIGHTS = np.array([1.0, 1.0, 1.0, 1.0])
 
 # RPN anchor loader
 # rpn anchors batch size
-config.TRAIN.RPN_BATCH_SIZE = 4
+config.TRAIN.RPN_BATCH_SIZE = 256
 # rpn anchors sampling params
 config.TRAIN.RPN_FG_FRACTION = 0.5
 config.TRAIN.RPN_POSITIVE_OVERLAP = 0.7
