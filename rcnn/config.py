@@ -164,7 +164,7 @@ dataset.Retina.ANCHOR_SCALES = (8,)
 dataset.Retina.ANCHOR_RATIOS = (0.5, 1, 2)
 dataset.Retina.NUM_ANCHORS = len(dataset.Retina.ANCHOR_SCALES) * len(dataset.Retina.ANCHOR_RATIOS)
 
-dataset.name = 'DR' #DR,ROP
+dataset.name = 'ROP' #DR,ROP
 
 if dataset.name=='ROP':
     config.TRAIN.SCALE = True
