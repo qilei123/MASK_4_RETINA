@@ -587,13 +587,13 @@ def get_resnet_fpn_maskrcnn(num_classes=config.NUM_CLASSES):
     mask_deconv_act_list = []
     for stride in rcnn_feat_stride:
         if config.ROIALIGN:
-                
+            '''    
             roi_pool = mx.symbol.ROIAlign(
                 name='roi_pool', data=conv_fpn_feat['stride%s'%stride], rois=rois['rois_stride%s' % stride],
                 pooled_size=(14, 14),
                 spatial_scale=1.0 / stride)    
             '''
-            offset_t = mx.contrib.sym.DeformablePSROIPooling(name='offset_t', 
+            offset_t = mx.contrib.sym.DeformablePSROIPooling(name='offset_t%s'%stride, 
                                                             data=conv_fpn_feat['stride%s'%stride], 
                                                             rois=rois['rois_stride%s' % stride], 
                                                             group_size=1, 
@@ -603,8 +603,8 @@ def get_resnet_fpn_maskrcnn(num_classes=config.NUM_CLASSES):
                                                             part_size=14, 
                                                             output_dim=256, 
                                                             spatial_scale=1.0 / stride)
-            offset = mx.sym.FullyConnected(name='offset', data=offset_t, num_hidden=7 * 7 * 2, lr_mult=0.01)
-            offset_reshape = mx.sym.Reshape(data=offset, shape=(-1, 2, 7, 7), name="offset_reshape")
+            offset = mx.sym.FullyConnected(name='offset%s'%stride, data=offset_t, num_hidden=7 * 7 * 2, lr_mult=0.01)
+            offset_reshape = mx.sym.Reshape(data=offset, shape=(-1, 2, 7, 7), name='offset_reshape%s'%stride)
             roi_pool = mx.contrib.sym.DeformablePSROIPooling(name='roi_pool', 
                                                                         data=conv_fpn_feat['stride%s'%stride], 
                                                                         rois=rois['rois_stride%s' % stride], 
@@ -617,7 +617,7 @@ def get_resnet_fpn_maskrcnn(num_classes=config.NUM_CLASSES):
                                                                         output_dim=256, 
                                                                         spatial_scale=1.0 / stride, 
                                                                         trans_std=0.1)
-            '''
+            
         else:
             roi_pool = mx.symbol.ROIPooling(
                 name='roi_pool', data=conv_fpn_feat['stride%s'%stride], rois=rois['rois_stride%s' % stride],
