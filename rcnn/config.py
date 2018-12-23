@@ -41,7 +41,7 @@ config.TRAIN.SCALE_RANGE = (0.8, 1)
 
 # R-CNN
 # rcnn rois batch size
-config.TRAIN.BATCH_ROIS = 64
+config.TRAIN.BATCH_ROIS = 32
 
 # rcnn rois sampling params
 config.TRAIN.FG_FRACTION = 0.25
@@ -54,7 +54,7 @@ config.TRAIN.BBOX_WEIGHTS = np.array([1.0, 1.0, 1.0, 1.0])
 
 # RPN anchor loader
 # rpn anchors batch size
-config.TRAIN.RPN_BATCH_SIZE = 64
+config.TRAIN.RPN_BATCH_SIZE = 32
 # rpn anchors sampling params
 config.TRAIN.RPN_FG_FRACTION = 0.5
 config.TRAIN.RPN_POSITIVE_OVERLAP = 0.7
@@ -118,13 +118,13 @@ default.test_image_set = 'val'
 default.root_path = 'data'
 default.dataset_path = 'data/cityscape'
 # default training
-default.frequent = 4
+default.frequent = 20
 default.kvstore = 'device'
 # default rpn
 default.rpn_prefix = 'model/rpn'
 default.rpn_epoch = 8
 default.rpn_lr = default.base_lr
-default.rpn_lr_step = '6'
+default.rpn_lr_step = '20'
 # default rcnn
 default.rcnn_prefix = 'model/rcnn'
 default.rcnn_epoch = 24
@@ -164,7 +164,7 @@ dataset.Retina.ANCHOR_SCALES = (8,)
 dataset.Retina.ANCHOR_RATIOS = (0.5, 1, 2)
 dataset.Retina.NUM_ANCHORS = len(dataset.Retina.ANCHOR_SCALES) * len(dataset.Retina.ANCHOR_RATIOS)
 
-dataset.name = 'ROP' #DR,ROP
+dataset.name = 'DR' #DR,ROP
 
 if dataset.name=='ROP':
     config.TRAIN.SCALE = True
